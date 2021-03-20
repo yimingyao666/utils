@@ -20,9 +20,9 @@ function call(fn, obj, ...args) {
 }
 
 /* 
-  1.apply函数
+  2.apply函数
   参数：fn、obj、参数为数组;
-  功能：执行fn，使this为obj，并将后面的n个参数传递给fn
+  功能：执行fn，使this为obj，并将数组中的元素传递给fn
   globalThis: 提供了一个标准的方式来获取不同环境下的全局 this  对象（也就是全局对象自身）
 */
 function apply(fn, obj, args) {
@@ -38,4 +38,17 @@ function apply(fn, obj, args) {
   delete obj.temp;
   // 返回结果
   return res;
+}
+
+/* 
+  3.bind函数
+  参数：fn、obj、n个参数;
+  功能：执行fn，使this为obj，并指定参数为后面n个参数
+  globalThis: 提供了一个标准的方式来获取不同环境下的全局 this  对象（也就是全局对象自身）
+*/
+function bind(fn, obj, ...args) {
+  // 返回函数
+  return function(...args2) {
+    return call(fn, obj, ...args, ...args2)
+  }
 }
