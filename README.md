@@ -9,5 +9,7 @@
 > 函数：throttle(callback, wait)
 > 功能：创建一个函数，在wait时间段内最多执行一次callback函数
 ##### 2.2.函数防抖  
+> 理解：在规定时间内，只让最后一次函数生效。
+> 场景：搜索框搜索、表单验证、按钮提交
 > 函数：debounce(callback, wait)
 > 功能：创建一个函数，该函数会从上一次执行后，延迟wait时间后再次执行callback
