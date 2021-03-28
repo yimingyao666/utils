@@ -52,3 +52,46 @@ function bind(fn, obj, ...args) {
     return call(fn, obj, ...args, ...args2)
   }
 }
+
+/* 
+  4.函数节流
+*/
+function throttle(callback, wait) {
+  // 定义开始时间
+  let start = 0;
+  // 返回结果
+  return function() {
+    // 获取当前时间
+    let now =  Date.now();
+    // 判断条件
+    if(now - start >= wait) {
+      // 若满足条件，执行函数
+      callback && callback();
+      // 设置开始时间
+      start = now;
+    }
+  }
+}
+
+/* 
+  5.函数防抖
+*/
+function debounce(callback, wait) {
+  // 设置定时器
+  let timeTemp = null;
+  // 返回结果
+  return function(e) {
+    // 判断
+    if(timeTemp !== null) {
+      // 清空定时器
+      clearTimeout(timeTemp)
+    }
+    // 执行定时器
+    timeTemp = setTimeout(() => {
+      // 执行函数
+      callback.call(this, e);
+      // 重新设置定时器
+      timeTemp = null;
+    }, wait)
+  }
+}
